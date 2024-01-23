@@ -15051,13 +15051,13 @@ jp-needs-light-background
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>For that question. There are 11 states. We start from the terminal state: 0, as "End" position.
-Then, we treat other positions, start, 1, 2, ..., 9, as states with distance to End. 
-So, we have those states: 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0.</p>
-<p>For every pair of $i, j$, transition probability $p$ is defined in this \
-$P(i,j) = 0$ if $j &gt;= i$, \
-$P(i,j) = 1/i$ if $j &lt; i$ \
-(Notice that $P(0, j) = 0$ since every state is greater or equal to 0)</p>
+<p>For that question. There are 11 states. We start from the terminal state: 0, as "End" position. <br>
+Then, we treat other positions, start, 1, 2, ..., 9, as states with distance to End. <br>
+So, we have those states: 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0. <br></p>
+<p>For every pair of i, j, transition probability p is defined in this <br>
+P(i,j) = 0 if j &gt;= i <br>
+P(i,j) = 1/i if j &lt; i <br>
+(Notice that P(0, j) = 0 since every state is greater or equal to 0) <br></p>
 
 </div>
 </div>
@@ -15081,20 +15081,14 @@ $P(i,j) = 1/i$ if $j &lt; i$ \
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>We view the function of expected number of steps as f. \
-First, it is obvious that
-$f(1) = 1$. It needs one step to 0 with probability of 1. \
-Then, $f(2) = 0.5 * 1 + 0.5 * (f(1)+1) = 3/2$. \
-Continue: \
-$f(3) = 1/3 + (f(1)+1)/3 + (f(2)+1)/3 = 1 + (f(1)+f(2))/3 = 11/6$ \
-It is obvious then: \
-$f(i)$, when i will not be 0, \
-$= 1/i + (f(i-1)+1)/i + (f(i-2)+1)/i + ... (f(1)+1)/i = 1 + (f(1) + f(2) + ... + f(i-1))/i$.\
-We write a code to solve this. The expected number of steps it would take is 2.9287.</p>
-<p>Then, we tried to calculate everything by hand. \
-The $f(1)$ to $f(5)$ is $1, 3/2, 11/6, 50/24, 274/120$. \
-Continue, we will get the final answer
-for $f(10) = 7381/2520 = 2.9287$. (The trend will be explained in part c)</p>
+<p>We view the function of expected number of steps as f. First, it is obvious that <br>
+f(1) = 1. It needs one step to 0 with probability of 1. <br>
+Then, f(2) = 0.5 <em> 1 + 0.5 </em> (f(1)+1) = 3/2. Continue <br>
+f(3) = 1/3 + (f(1)+1)/3 + (f(2)+1)/3 = 1 + (f(1)+f(2))/3 = 11/6 <br>
+It is obvious then: <br>
+When i will not be 0, $ f(i)= \frac{1}{i} + \frac{(f(i-1)+1)}{i} + \frac{(f(i-2)+1)}{i} + ... \frac{(f(1)+1)}{i}= 1 + \frac{(f(1) + f(2) + ... + f(i-1))}{i}. $ <br>
+<br>
+Calculate by hand or through a code, we will get the answer f(10) = 7381/2520 = 2.92897. <br>. We need 2.92897 expected number of steps</p>
 
 </div>
 </div>
@@ -15118,15 +15112,29 @@ for $f(10) = 7381/2520 = 2.9287$. (The trend will be explained in part c)</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>We extend our question to n. Suppose $n = k$. Thus, we have states: $\{0, 1, 2, 3, ..., k+1\}$
-We notice that: the expected number of a state to get to the terminal state 0 is identical for all possible $n$. (As long as it is included). 
-Since the expected number of a given states is only determined by how many states ahead, while the number of n only changes the number of states behind.</p>
-<p>Thus, given an arbitrary number $n=k$. Suppose the expected number of steps it needs under this case is $m(k)$. Given the reasoning above:
-$m(k) = f(k+1) = 1 + (f(1) + f(2) + ... + f(k))/(k+1) = 1 + (m(0) + m(1) + ... + m(k-1))/(k+1)$</p>
-<p>In addition to that, we carefully review the first several answers of $f$. We notice that each denominator is the least common multiple of previous denominator and $i$. So we tried to decrease each consecutive pair, we found that $f(i) - f(i-1) = 1/i$.
-(Since we don't need to proof that, I just illustrated how I found that.)
-Thus, we can claim that
-$m(k) = f(k+1) = \sum_{i=1}^{k+1} \frac{1}{i}$.</p>
+<p>We extend our question to n. Suppose n = k. Thus, we have states: 0, 1, 2, 3, ..., k+1 <br>
+We notice that: the expected number of a state to get to the terminal state 0 is identical for all possible n. (As long as it is included). <br>
+Since the expected number of a given states is only determined by how many states ahead, while the number of n only changes the number of states behind. <br>
+Thus, given an arbitrary number n=k. Suppose the expected number of steps it needs under this case is m(k). Given the reasoning above: <br>
+$m(k) = f(k+1) = 1 + \frac{f(1) + f(2) + ... + f(k)}{k+1} = 1 + \frac{m(0) + m(1) + ... + m(k-1)}{k+1}$ <br>
+<br>
+In addition to that, we carefully review the first several answers of f. We notice that each denominator is the least common multiple of previous denominator and i. So we tried to decrease each consecutive pair, we found that f(i) - f(i-1) = 1/i. <br>
+Thus, we can claim that m(n) = f(n+1) = $\sum_{i=1}^{n+1} \frac{1}{i} $. For an arbitrary n, we need $\sum_{i=1}^{n+1} \frac{1}{i} $ expected number of steps</p>
+
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Additional Proof: $f(i) - f(i-1) = \frac{1}{i} $ <br>
+We have already proved that $f(i) = 1 + \frac{f(1) + f(2) + ... + f(i-1)}{i}$ and $f(i-1) = 1 + \frac{f(1) + f(2) + ... + f(i-2)}{i-1}$ <br>
+Thus $f(1) + f(2) + ... + f(i-2) = (i-1)f(i-1)-i+1$ Plug back to $f(i)$ <br>
+$f(i) = 1 + \frac{(i-1)f(i-1)-i+1 + f(i-1)}{i} = 1 + f(i-1) - 1 + \frac{1}{i}$. We get $f(i) - f(i-1) = \frac{1}{i}$</p>
 
 </div>
 </div>
@@ -15166,8 +15174,8 @@ For all states $s \in \mathcal{S}$ and actions $a \in [0,1]$, transitioning from
 <p>For every s in S. Apply the definition. $R(s,a) = EV(R_{t+1}|S_t=s, A_t=a) = (1-a)a + (1+a)(1-a) = (1-a)(1+2a)$ <br>
 $Q^*(s,a) = (1-a)(1+2a) + 0.5(aV^*(s+1) + (1-a)V^*(s))$ <br>
 Notice that, we can also get $Q^*(s+1,a) = (1-a)(1+2a) + 0.5(aV^*(s+2) + (1-a)V^*(s+1))$ <br>
-In conclusion: for every s, $Q^*(s,a)$ depends on $V^*$ ahead. We notice that there are infinite number of states. So they are identical.  <br>
-$V^*(s) = max_a Q^*(s,a)$, so $V^*(s) = V^*(s+1)$. <br>
+$V^*(s) = max_a Q^*(s,a)$. <br> 
+Due to stationary property and infinite number of states ahead. $V^*(s) = V^*(s+1)$. <br>
 Thus, we get $Q^*(s,a) = (1-a)(1+2a) + 0.5V^*(s)$. To find the optimal a, we can find it through derivative. <br>
 We find. When $a = \frac{1}{4}$, $Q^*(s,a)$, will get the max values. <br>
 $V^*(s) = \frac{9}{4}$</p>
@@ -15194,7 +15202,8 @@ $V^*(s) = \frac{9}{4}$</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>$\pi^*(s) =argmax_a Q^*(s,a) = \frac{1}{4}$. Reasoning elaborated above.</p>
+<p>Given the reasoning above, I got $Q^*(s,a) = (1-a)(1+2a) + 0.5V^*(s)$. Find the maximum of Q under a by derivative. We get $1-4a = 0$. The a to make the maximum value is 0.25 <br>
+Given the definitions, $\pi^*(s) =argmax_a Q^*(s,a) = \frac{1}{4}$. The optimal deterministic policy is 0.25.</p>
 
 </div>
 </div>
